@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ReporteDeTiemposIntergrupoPruebasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MaestroTipoHora">
+          <Key>
+            <PropertyRef Name="CodigoMaestro" />
+          </Key>
+          <Property Name="CodigoMaestro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoTipoHora" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoHora">
+          <Key>
+            <PropertyRef Name="CodigoTipoHora" />
+          </Key>
+          <Property Name="CodigoTipoHora" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Facturable" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_MaestroCodigoTipoHora">
+          <End Role="TipoHora" Type="Self.TipoHora" Multiplicity="1" />
+          <End Role="MaestroTipoHora" Type="Self.MaestroTipoHora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoHora">
+              <PropertyRef Name="CodigoTipoHora" />
+            </Principal>
+            <Dependent Role="MaestroTipoHora">
+              <PropertyRef Name="CodigoTipoHora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ReporteDeTiemposIntergrupoPruebasModelStoreContainer">
+          <EntitySet Name="MaestroTipoHora" EntityType="Self.MaestroTipoHora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoHora" EntityType="Self.TipoHora" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MaestroCodigoTipoHora" Association="Self.FK_MaestroCodigoTipoHora">
+            <End Role="TipoHora" EntitySet="TipoHora" />
+            <End Role="MaestroTipoHora" EntitySet="MaestroTipoHora" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ReporteDeTiemposIntergrupoPruebasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MaestroTipoHora">
+          <Key>
+            <PropertyRef Name="CodigoMaestro" />
+          </Key>
+          <Property Name="CodigoMaestro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoTipoHora" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TipoHora" Relationship="Self.FK_MaestroCodigoTipoHora" FromRole="MaestroTipoHora" ToRole="TipoHora" />
+        </EntityType>
+        <EntityType Name="TipoHora">
+          <Key>
+            <PropertyRef Name="CodigoTipoHora" />
+          </Key>
+          <Property Name="CodigoTipoHora" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Facturable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MaestroTipoHoras" Relationship="Self.FK_MaestroCodigoTipoHora" FromRole="TipoHora" ToRole="MaestroTipoHora" />
+        </EntityType>
+        <Association Name="FK_MaestroCodigoTipoHora">
+          <End Role="TipoHora" Type="Self.TipoHora" Multiplicity="1" />
+          <End Role="MaestroTipoHora" Type="Self.MaestroTipoHora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoHora">
+              <PropertyRef Name="CodigoTipoHora" />
+            </Principal>
+            <Dependent Role="MaestroTipoHora">
+              <PropertyRef Name="CodigoTipoHora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ReporteDeTiemposIntergrupoPruebasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MaestroTipoHoras" EntityType="Self.MaestroTipoHora" />
+          <EntitySet Name="TipoHoras" EntityType="Self.TipoHora" />
+          <AssociationSet Name="FK_MaestroCodigoTipoHora" Association="Self.FK_MaestroCodigoTipoHora">
+            <End Role="TipoHora" EntitySet="TipoHoras" />
+            <End Role="MaestroTipoHora" EntitySet="MaestroTipoHoras" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ReporteDeTiemposIntergrupoPruebasModelStoreContainer" CdmEntityContainer="ReporteDeTiemposIntergrupoPruebasEntities">
+          <EntitySetMapping Name="MaestroTipoHoras">
+            <EntityTypeMapping TypeName="ReporteDeTiemposIntergrupoPruebasModel.MaestroTipoHora">
+              <MappingFragment StoreEntitySet="MaestroTipoHora">
+                <ScalarProperty Name="CodigoMaestro" ColumnName="CodigoMaestro" />
+                <ScalarProperty Name="CodigoTipoHora" ColumnName="CodigoTipoHora" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoHoras">
+            <EntityTypeMapping TypeName="ReporteDeTiemposIntergrupoPruebasModel.TipoHora">
+              <MappingFragment StoreEntitySet="TipoHora">
+                <ScalarProperty Name="CodigoTipoHora" ColumnName="CodigoTipoHora" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Facturable" ColumnName="Facturable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

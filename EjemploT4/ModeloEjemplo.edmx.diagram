@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="136d68d92e4a42a18f3f0e5e4c8513a6" Name="Diagram1">
+        <EntityTypeShape EntityType="ReporteDeTiemposIntergrupoPruebasModel.MaestroTipoHora" Width="1.5" PointX="3.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReporteDeTiemposIntergrupoPruebasModel.TipoHora" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="ReporteDeTiemposIntergrupoPruebasModel.FK_MaestroCodigoTipoHora" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
